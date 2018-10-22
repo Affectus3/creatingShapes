@@ -12,8 +12,8 @@ public class MyPanel extends JPanel {
         super.paintComponent(g2);
 
         try{
-            fieldText arrays = MyFrame.getFieldText();
-            System.out.println(arrays);
+            //fieldText arrays = MyFrame.getFieldText();
+            //System.out.println(arrays);
 
         }catch (Exception ex){
             ex.getStackTrace();
