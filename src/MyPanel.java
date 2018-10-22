@@ -13,7 +13,7 @@ public class MyPanel extends JPanel {
 
         try {
             fieldText fieldText1 = MyFrame.getFieldText();
-            System.out.println(fieldText1);
+            System.out.println(fieldText1.getArray().toString());
         }catch (Exception ex){
             ex.getStackTrace();
         }

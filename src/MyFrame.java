@@ -127,9 +127,9 @@ public class MyFrame {
     public static void setTextandBounds(String[] texts, int[][] bounds){
         for(int i = 0; i < 1; i++){
             textField1.setText(texts[i]);
-            textField2.setText(texts[i]);
-            textField3.setText(texts[i]);
-            textField4.setText(texts[i]);
+            textField2.setText(texts[i + 1]);
+            textField3.setText(texts[i + 2]);
+            textField4.setText(texts[i + 3]);
             textField1.setBounds(bounds[i][i], bounds[i][i + 1], bounds[i][i + 2], bounds[i][i + 3]);
             textField2.setBounds(bounds[i+1][i], bounds[i + 1][i + 1], bounds[i + 1][i + 2], bounds[i + 1][i + 3]);
             textField3.setBounds(bounds[i+2][i], bounds[i+2][i + 1], bounds[i+2][i + 2], bounds[i+2][i + 3]);
