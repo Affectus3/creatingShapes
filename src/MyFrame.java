@@ -4,7 +4,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class MyFrame {
-
+    static JTextField[] lineTextFields;
+    static JTextField[] rectTextFields;
+    static JTextField[] circleTextFields;
     public static void main(String[] args) {
         JFrame frame = new JFrame("App");
         MyPanel myPanel = new MyPanel();
@@ -25,7 +27,7 @@ public class MyFrame {
         frame.add(drawBtn);
 
         //Setting textfields for the line button
-        JTextField[] lineTextFields = new JTextField[4];
+        lineTextFields = new JTextField[4];
         String[] lineTextFieldSetText = new String[]{"Enter x1", "Enter y1", "Enter x2", "Enter y2"};
         int[][] lineTextFieldBounds = new int[][]{
                 {40,100,80,20},
@@ -37,7 +39,7 @@ public class MyFrame {
 
 
         //Setting textfields for the rectangle button
-        JTextField[] rectTextFields = new JTextField[4];
+        rectTextFields = new JTextField[4];
         String[] rectTextFieldSetText = new String[]{"Enter x", "Enter y", "Enter width", "Enter height"};
         int[][] rectTextFieldBounds = new int[][]{
                 {190,100,80,20},
@@ -49,7 +51,7 @@ public class MyFrame {
 
 
         //Setting textfields for the circle button
-        JTextField[] circleTextFields = new JTextField[4];
+        circleTextFields = new JTextField[4];
         String[] circleTextFieldSetText = new String[]{"Enter x", "Enter y", "Enter width", "Enter height"};
         int[][] circleTextFieldBounds = new int[][]{
                 {340,100,80,20},
@@ -62,7 +64,7 @@ public class MyFrame {
         lineBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                setVisible(lineTextFields, rectTextFields, circleTextFields, true, false, false);
+                setVisible(true, false, false);
 
             }
         });
@@ -70,20 +72,20 @@ public class MyFrame {
         rectangleBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                setVisible(lineTextFields, rectTextFields, circleTextFields, false, true, false);
+                setVisible(false, true, false);
             }
         });
         circleBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                setVisible(lineTextFields, rectTextFields, circleTextFields, false, false, true);
+                setVisible(false, false, true);
             }
         });
 
         drawBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                getFieldText(lineTextFields, rectTextFields, circleTextFields);
+                getFieldText();
             }
         });
 
@@ -105,14 +107,14 @@ public class MyFrame {
             textFields[i].setVisible(false);
         }
     }
-    public static void setVisible(JTextField[] lineTextFields, JTextField[] rectTextFields, JTextField[] circleTextFields,boolean line, boolean rect, boolean circle){
+    public static void setVisible(boolean line, boolean rect, boolean circle){
         for(int i = 0; i <= 3; i++){
             lineTextFields[i].setVisible(line);
             rectTextFields[i].setVisible(rect);
             circleTextFields[i].setVisible(circle);
         }
     }
-    public static void getFieldText(JTextField[] lineTextFields, JTextField[] rectTextFields, JTextField[] circleTextFields){
+    public static fieldText getFieldText(){
         int[] arrays = new int[4];
         if(lineTextFields[0].isVisible()){
             for(int i =0 ; i <= 3; i++){
@@ -129,6 +131,7 @@ public class MyFrame {
                 arrays[i] = Integer.parseInt(circleTextFields[i].getText());
             }
         }
+        return new fieldText(arrays);
     }
 
 //    public static fieldText getFieldText(){
