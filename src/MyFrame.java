@@ -26,9 +26,6 @@ public class MyFrame {
 
         //Setting textfields for the line button
         JTextField[] lineTextFields = new JTextField[4];
-        for(int i = 0; i <= 3; i++){
-            lineTextFields[i] = new JTextField(i);
-        }
         String[] lineTextFieldSetText = new String[]{"Enter x1", "Enter y1", "Enter x2", "Enter y2"};
         int[][] lineTextFieldBounds = new int[][]{
                 {40,100,80,20},
@@ -41,9 +38,6 @@ public class MyFrame {
 
         //Setting textfields for the rectangle button
         JTextField[] rectTextFields = new JTextField[4];
-        for(int i = 0; i <= 3; i++){
-            rectTextFields[i] = new JTextField(i);
-        }
         String[] rectTextFieldSetText = new String[]{"Enter x", "Enter y", "Enter width", "Enter height"};
         int[][] rectTextFieldBounds = new int[][]{
                 {190,100,80,20},
@@ -56,9 +50,6 @@ public class MyFrame {
 
         //Setting textfields for the circle button
         JTextField[] circleTextFields = new JTextField[4];
-        for(int i = 0; i <= 3; i++){
-            circleTextFields[i] = new JTextField(i);
-        }
         String[] circleTextFieldSetText = new String[]{"Enter x", "Enter y", "Enter width", "Enter height"};
         int[][] circleTextFieldBounds = new int[][]{
                 {340,100,80,20},
@@ -103,8 +94,9 @@ public class MyFrame {
         frame.setSize(500, 500);
         frame.setBackground(Color.white);
     }
-    private static void setFieldText(JFrame frame, JTextField[] textFields, int[][] textFieldBounds, String[] textFieldSetText){
+    public static void setFieldText(JFrame frame, JTextField[] textFields, int[][] textFieldBounds, String[] textFieldSetText){
         for(int i = 0; i <= 3; i++){
+            textFields[i] = new JTextField();
             for(int j = 0; j < 1; j++){
                 textFields[i].setBounds(textFieldBounds[i][j], textFieldBounds[i][j+1], textFieldBounds[i][j+2], textFieldBounds[i][j+3]);
                 textFields[i].setText(textFieldSetText[i]);
@@ -122,7 +114,7 @@ public class MyFrame {
     }
     public static void getFieldText(JTextField[] lineTextFields, JTextField[] rectTextFields, JTextField[] circleTextFields){
         int[] arrays = new int[4];
-        if(lineTextFields[0].is){
+        if(lineTextFields[0].isVisible()){
             for(int i =0 ; i <= 3; i++){
                 arrays[i] = Integer.parseInt(lineTextFields[i].getText());
             }
