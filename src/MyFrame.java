@@ -4,13 +4,14 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class MyFrame {
-    static JTextField[] lineTextFields;
-    static JTextField[] rectTextFields;
-    static JTextField[] circleTextFields;
+    static JTextField textField1;
+    static JTextField textField2;
+    static JTextField textField3;
+    static JTextField textField4;
+
     public static void main(String[] args) {
         JFrame frame = new JFrame("App");
         MyPanel myPanel = new MyPanel();
-
 
         JButton lineBtn = new JButton("Line");
         lineBtn.setBounds(40,20,100,30);
@@ -26,8 +27,13 @@ public class MyFrame {
         frame.add(circleBtn);
         frame.add(drawBtn);
 
+
+        textField1 = new JTextField();
+        textField2 = new JTextField();
+        textField3 = new JTextField();
+        textField4 = new JTextField();
+
         //Setting textfields for the line button
-        lineTextFields = new JTextField[4];
         String[] lineTextFieldSetText = new String[]{"Enter x1", "Enter y1", "Enter x2", "Enter y2"};
         int[][] lineTextFieldBounds = new int[][]{
                 {40,100,80,20},
@@ -35,11 +41,8 @@ public class MyFrame {
                 {40,200,80,20},
                 {40,250,80,20}
         };
-        setFieldText(frame, lineTextFields, lineTextFieldBounds, lineTextFieldSetText);
-
 
         //Setting textfields for the rectangle button
-        rectTextFields = new JTextField[4];
         String[] rectTextFieldSetText = new String[]{"Enter x", "Enter y", "Enter width", "Enter height"};
         int[][] rectTextFieldBounds = new int[][]{
                 {190,100,80,20},
@@ -47,11 +50,8 @@ public class MyFrame {
                 {190,200,80,20},
                 {190,250,80,20}
         };
-        setFieldText(frame, rectTextFields, rectTextFieldBounds, rectTextFieldSetText);
-
 
         //Setting textfields for the circle button
-        circleTextFields = new JTextField[4];
         String[] circleTextFieldSetText = new String[]{"Enter x", "Enter y", "Enter width", "Enter height"};
         int[][] circleTextFieldBounds = new int[][]{
                 {340,100,80,20},
@@ -59,26 +59,36 @@ public class MyFrame {
                 {340,200,80,20},
                 {340,250,80,20}
         };
-        setFieldText(frame, circleTextFields, circleTextFieldBounds, circleTextFieldSetText);
+
+        setVisible(false);
+        frame.add(textField1);
+        frame.add(textField2);
+        frame.add(textField3);
+        frame.add(textField4);
 
         lineBtn.addMouseListener(new MouseAdapter() {
             @Override
-            public void mousePressed(MouseEvent e) {
-                setVisible(true, false, false);
-
+            public void mousePressed (MouseEvent e) {
+                setVisible(false);
+                setTextandBounds(lineTextFieldSetText, lineTextFieldBounds);
+                setVisible(true);
             }
         });
 
         rectangleBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                setVisible(false, true, false);
+                setVisible(false);
+                setTextandBounds(rectTextFieldSetText, rectTextFieldBounds);
+                setVisible(true);
             }
         });
         circleBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                setVisible(false, false, true);
+                setVisible(false);
+                setTextandBounds(circleTextFieldSetText, circleTextFieldBounds);
+                setVisible(true);
             }
         });
 
@@ -96,48 +106,34 @@ public class MyFrame {
         frame.setSize(500, 500);
         frame.setBackground(Color.white);
     }
-    public static void setFieldText(JFrame frame, JTextField[] textFields, int[][] textFieldBounds, String[] textFieldSetText){
-        for(int i = 0; i <= 3; i++){
-            textFields[i] = new JTextField();
-            for(int j = 0; j < 1; j++){
-                textFields[i].setBounds(textFieldBounds[i][j], textFieldBounds[i][j+1], textFieldBounds[i][j+2], textFieldBounds[i][j+3]);
-                textFields[i].setText(textFieldSetText[i]);
-            }
-            frame.add(textFields[i]);
-            textFields[i].setVisible(false);
-        }
-    }
-    public static void setVisible(boolean line, boolean rect, boolean circle){
-        for(int i = 0; i <= 3; i++){
-            lineTextFields[i].setVisible(line);
-            rectTextFields[i].setVisible(rect);
-            circleTextFields[i].setVisible(circle);
-        }
-    }
+
     public static fieldText getFieldText(){
-        int[] arrays = new int[4];
-        if(lineTextFields[0].isVisible()){
-            for(int i =0 ; i <= 3; i++){
-                arrays[i] = Integer.parseInt(lineTextFields[i].getText());
-            }
-        }
-        else if(rectTextFields[0].isVisible()){
-            for(int i =0 ; i <= 3; i++){
-                arrays[i] = Integer.parseInt(rectTextFields[i].getText());
-            }
-        }
-        else if(circleTextFields[0].isVisible()){
-            for(int i =0 ; i <= 3; i++){
-                arrays[i] = Integer.parseInt(circleTextFields[i].getText());
-            }
-        }
-        return new fieldText(arrays);
+        int[] array = new int[4];
+        array[0] = Integer.parseInt(textField1.getText());
+        array[1] = Integer.parseInt(textField2.getText());
+        array[2] = Integer.parseInt(textField3.getText());
+        array[3] = Integer.parseInt(textField4.getText());
+
+        return new fieldText(array);
     }
 
-//    public static fieldText getFieldText(){
-//        int[] arrays =  new int[4];
-//        for (int i = 0; i <= 3; i++){
-//            arrays[i] = Integer.parseInt(textFields[i].getText());
-//        }return new fieldText(arrays);
-//    }
+    public static void setVisible(boolean set){
+        textField1.setVisible(set);
+        textField2.setVisible(set);
+        textField3.setVisible(set);
+        textField4.setVisible(set);
+    }
+
+    public static void setTextandBounds(String[] texts, int[][] bounds){
+        for(int i = 0; i < 1; i++){
+            textField1.setText(texts[i]);
+            textField2.setText(texts[i]);
+            textField3.setText(texts[i]);
+            textField4.setText(texts[i]);
+            textField1.setBounds(bounds[i][i], bounds[i][i + 1], bounds[i][i + 2], bounds[i][i + 3]);
+            textField2.setBounds(bounds[i+1][i], bounds[i + 1][i + 1], bounds[i + 1][i + 2], bounds[i + 1][i + 3]);
+            textField3.setBounds(bounds[i+2][i], bounds[i+2][i + 1], bounds[i+2][i + 2], bounds[i+2][i + 3]);
+            textField4.setBounds(bounds[i+3][i], bounds[i + 3][i + 1], bounds[i + 3][i + 2], bounds[i + 3][i + 3]);
+        }
+    }
 }
