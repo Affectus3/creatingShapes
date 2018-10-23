@@ -8,6 +8,8 @@ public class MyFrame {
     static JTextField textField2;
     static JTextField textField3;
     static JTextField textField4;
+    public enum Shapes { LINE, RECTANGLE, CIRCLE }
+    static Shapes shape = Shapes.LINE;
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("App");
@@ -74,6 +76,7 @@ public class MyFrame {
             public void mousePressed (MouseEvent e) {
                 setVisible(false);
                 setTextandBounds(lineTextFieldSetText, lineTextFieldBounds);
+                shape = Shapes.LINE;
                 setVisible(true);
             }
         });
@@ -83,6 +86,7 @@ public class MyFrame {
             public void mousePressed(MouseEvent e) {
                 setVisible(false);
                 setTextandBounds(rectTextFieldSetText, rectTextFieldBounds);
+                 shape = Shapes.RECTANGLE;
                 setVisible(true);
             }
         });
@@ -91,6 +95,7 @@ public class MyFrame {
             public void mousePressed(MouseEvent e) {
                 setVisible(false);
                 setTextandBounds(circleTextFieldSetText, circleTextFieldBounds);
+                shape = Shapes.CIRCLE;
                 setVisible(true);
             }
         });
@@ -110,14 +115,14 @@ public class MyFrame {
         frame.setBackground(Color.white);
     }
 
-    public static fieldText getFieldText(){
+    public static int[] getFieldText(){
         int[] array = new int[4];
         array[0] = Integer.parseInt(textField1.getText());
         array[1] = Integer.parseInt(textField2.getText());
         array[2] = Integer.parseInt(textField3.getText());
         array[3] = Integer.parseInt(textField4.getText());
 
-        return new fieldText(array);
+        return array.clone();
     }
 
     public static void setVisible(boolean set){
