@@ -44,22 +44,25 @@ public class MyFrame {
 
         //Setting textfields for the rectangle button
         String[] rectTextFieldSetText = new String[]{"Enter x", "Enter y", "Enter width", "Enter height"};
-        int[][] rectTextFieldBounds = new int[][]{
-                {190,100,80,20},
-                {190,150,80,20},
-                {190,200,80,20},
-                {190,250,80,20}
-        };
+        int[][] rectTextFieldBounds = new int[4][4];
 
         //Setting textfields for the circle button
         String[] circleTextFieldSetText = new String[]{"Enter x", "Enter y", "Enter width", "Enter height"};
-        int[][] circleTextFieldBounds = new int[][]{
-                {340,100,80,20},
-                {340,150,80,20},
-                {340,200,80,20},
-                {340,250,80,20}
-        };
+        int[][] circleTextFieldBounds = new int[4][4];
 
+
+        for(int i = 0; i <= 3; i++){
+            for (int j = 0; j <= 3; j++){
+                if((i == 0 && j == 0) || (i == 1 && j == 0) || (i == 2 && j == 0) || (i == 3 && j ==0)){
+                    rectTextFieldBounds[i][j] = lineTextFieldBounds[i][j] + 150;
+                    circleTextFieldBounds[i][j] = lineTextFieldBounds[i][j] + 300;
+                }
+                else{
+                    rectTextFieldBounds[i][j] = lineTextFieldBounds[i][j];
+                    circleTextFieldBounds[i][j] = lineTextFieldBounds[i][j];
+                }
+            }
+        }
         setVisible(false);
         frame.add(textField1);
         frame.add(textField2);
@@ -131,9 +134,9 @@ public class MyFrame {
             textField3.setText(texts[i + 2]);
             textField4.setText(texts[i + 3]);
             textField1.setBounds(bounds[i][i], bounds[i][i + 1], bounds[i][i + 2], bounds[i][i + 3]);
-            textField2.setBounds(bounds[i+1][i], bounds[i + 1][i + 1], bounds[i + 1][i + 2], bounds[i + 1][i + 3]);
-            textField3.setBounds(bounds[i+2][i], bounds[i+2][i + 1], bounds[i+2][i + 2], bounds[i+2][i + 3]);
-            textField4.setBounds(bounds[i+3][i], bounds[i + 3][i + 1], bounds[i + 3][i + 2], bounds[i + 3][i + 3]);
+            textField2.setBounds(bounds[i + 1][i], bounds[i + 1][i + 1], bounds[i + 1][i + 2], bounds[i + 1][i + 3]);
+            textField3.setBounds(bounds[i + 2][i], bounds[i + 2][i + 1], bounds[i + 2][i + 2], bounds[i + 2][i + 3]);
+            textField4.setBounds(bounds[i + 3][i], bounds[i + 3][i + 1], bounds[i + 3][i + 2], bounds[i + 3][i + 3]);
         }
     }
 }
